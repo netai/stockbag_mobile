@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-row>
+    <ion-col class="logo-section">
+      <img src="assets/images/logo.png" class="logo-img" />
+      <ion-label class="logo-name">stockbag</ion-label>
+    </ion-col>
+  </ion-row>
+  <form [formGroup]="loginFrm" name="loginFrm">
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="form-group">
+          <ion-label class="input-label">Username</ion-label>
+          <ion-input type="text" class="form-input" formControlName="username" [ngClass]="{ 'invalid-field': isSubmitted && formControls.username.errors }"></ion-input>
+        </ion-item>
+        <ion-item lines="none" class="btn-grp">
+          <button class="btn btn-blue btn-lg" (click)="login()">LOGIN</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

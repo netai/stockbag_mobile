@@ -1,0 +1,8 @@
+{
+  "name": "stockbag",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

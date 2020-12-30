@@ -1,0 +1,35 @@
+.instrument-list {
+    margin-bottom: 60px;
+}
+.instrument {
+    width: 100%;
+    font-size: 20px;
+    .instrument-info {
+        width: 50%;
+        float: left;
+        .symbol {
+            display: block;
+            padding-bottom: 5px;
+        }
+        .tag-label {
+            margin-right: .5rem;
+        }
+    }
+    .holding-info {
+        width: 50%;
+        float: left;
+        text-align: right;
+        .price {
+            display: block;
+            padding-bottom: 5px;
+        }
+        .icon {
+            color: #777;
+        }
+        .icon, .text {
+            vertical-align: middle;
+            display: inline-block;
+            padding-left: 3px;
+        }
+    }
+}

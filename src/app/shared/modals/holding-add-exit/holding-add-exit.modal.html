@@ -1,0 +1,45 @@
+<ion-header [translucent]="true" class="custom-header-border">
+  <ion-toolbar>
+    <ion-title>
+      <span [hidden]="action==='exit'">Add More</span><span [hidden]="action==='add'">Exit</span> Holding
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="addExitFrm" name="addExitFrm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Price</ion-label>
+            <ion-input type="number" class="form-input" formControlName="avg_price"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.avg_price.errors }"
+              pattern="^([1-9]\d*|0)(\.\d+)?$"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Quantity</ion-label>
+            <ion-input type="number" class="form-input" formControlName="qty"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.qty.errors }" pattern="^[0-9]*$">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Notes</ion-label>
+            <ion-textarea rows="2" class="form-input" formControlName="note"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="text-center">
+    <button class="btn btn-buy btn-xl" (click)="save('buy')" [hidden]="(holding.holding_type==='sell' && action==='add') || (holding.holding_type==='buy' && action==='exit')">BUY</button>
+    <button class="btn btn-sell btn-xl" (click)="save('sell')" [hidden]="(holding.holding_type==='buy' && action==='add') || (holding.holding_type==='sell' && action==='exit')">SELL</button>
+  </ion-toolbar>
+</ion-footer>

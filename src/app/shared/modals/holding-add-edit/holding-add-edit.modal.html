@@ -1,0 +1,114 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <span *ngIf="!holding">Add New</span><span *ngIf="holding">Edit</span> Holding
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close(false)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="addEditFrm" name="addEditFrm">
+    <ion-grid>
+      <ion-radio-group formControlName="exchange">
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none" class="form-group">
+              <ion-radio value="NSE" class="form-check-input"></ion-radio>
+              <ion-label class="form-check-label">NSE</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item lines="none" class="form-group">
+              <ion-radio value="BSE" class="form-check-input"></ion-radio>
+              <ion-label class="form-check-label">BSE</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Script Name</ion-label>
+            <ion-input type="text" class="form-input form-input__uppercase" formControlName="symbol"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.symbol.errors }" pattern="^$|^[A-Za-z0-9]+">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Price</ion-label>
+            <ion-input type="number" class="form-input" formControlName="avg_price"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.avg_price.errors }"
+              pattern="^([1-9]\d*|0)(\.\d+)?$" (ionBlur)="setTargetPrice()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Quantity</ion-label>
+            <ion-input type="number" class="form-input" formControlName="qty"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.qty.errors }" (ionBlur)="setTargetPrice()" pattern="^[0-9]*$">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Target Price</ion-label>
+            <ion-input type="number" class="form-input" formControlName="target_price"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.target_price.errors }"
+              pattern="^([1-9]\d*|0)(\.\d+)?$" (ionBlur)="setProfitPercentage()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Profit %</ion-label>
+            <ion-input type="number" class="form-input" formControlName="profit_percentage"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.profit_percentage.errors }"
+              pattern="^([1-9]\d*|0)(\.\d+)?$" (ionBlur)="setTargetPriceByPercentage()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Period</ion-label>
+            <ion-select value="W" formControlName="period" class="form-input select-input" interface="popover" (ionChange)="periodChanged()"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.period.errors }">
+              <ion-select-option value="S">Short</ion-select-option>
+              <ion-select-option value="M">Middle</ion-select-option>
+              <ion-select-option value="L">Long</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Est Exit Date</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" max="2099-01-01" formControlName="est_exit_date" class="form-input datetime-input"
+              [ngClass]="{ 'invalid-field': isSubmitted && formControls.est_exit_date.errors }" (ionBlur)="setTargetPrice()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Notes</ion-label>
+            <ion-textarea rows="4" class="form-input" formControlName="note"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="text-center">
+    <button class="btn btn-buy btn-lg" (click)="save('buy')" [disabled]="holding?.holding_type==='sell'">BUY</button>
+    <button class="btn btn-sell btn-lg" (click)="save('sell')" [disabled]="holding?.holding_type==='buy'">SELL</button>
+  </ion-toolbar>
+</ion-footer>

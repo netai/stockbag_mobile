@@ -1,0 +1,67 @@
+.script-name {
+    margin: 10px 0 10px 0;
+}
+.detail-row {
+    .detail-value {
+        font-size: 20px;
+    }
+}
+.tag-label {
+    font-size: 15px;
+    margin-right: .5rem;
+}
+.detail-title {
+    border-bottom: 1px solid #444;
+    color: #444;
+}
+.notes-row {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: .5rem;
+    padding-bottom: .5rem;
+    .notes-date {
+        color: #888;
+        float: left;
+    }
+    .notes-text {
+        clear:both;
+        color: #222;
+    }
+    .notes-delete-icon {
+        color: #F00;
+        float: right;
+        cursor: pointer;
+    }
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+.note-input-section {
+    .form-group {
+        .form-input {
+            padding: 0px!important;
+            width: 85%;
+            float: left;
+            border-color: #4184f3;
+            border-right: 0;
+            border-radius: 3px 0px 0px 3px;
+        }
+        .input-label {
+            top: -3px;
+        }
+        button {
+            padding: 24.5px 15px;
+            float: left;
+            margin: 2px 0 0 0;
+            background-color: #4184f3;
+            color: #fff;
+        }
+    }
+}
+.empty-note {
+    text-align: center;
+    color: #999;
+    margin: 2rem;
+}
+.action-btn {
+    margin-top: 2rem;
+}

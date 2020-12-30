@@ -1,0 +1,20 @@
+.logo-section {
+    text-align: center;
+    padding: 5rem 0;
+    .logo-name {
+        font-size: 2rem;
+        font-weight: bold;
+        display: block;
+        margin-top: .5rem;
+    }
+    .logo-img {
+        width: 30%;
+    }
+}
+.btn-grp {
+    text-align: center;
+    margin-top: 2rem;
+    button {
+        margin: 1rem auto;
+    }
+}

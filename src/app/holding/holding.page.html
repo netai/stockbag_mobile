@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Holding
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="instrument-list">
+    <ion-item button=true lines="full" *ngFor="let holding of holdingList" (click)="holdingDetail(holding.id)">
+      <ion-label class="instrument" color="dark">
+        <div class="instrument-info">
+          <label class="symbol">{{holding.symbol}}</label>
+          <span class="tag-label exchange-tag">{{holding.exchange}}</span>
+          <span class="tag-label buy-tag" *ngIf="holding.holding_type==='buy'">BUY</span>
+          <span class="tag-label sell-tag" *ngIf="holding.holding_type==='sell'">SELL</span>
+        </div>
+        <div class="holding-info">
+          <label class="price">
+            <span class="icon currency-inr"></span>
+            <span class="text">{{holding.avg_price | inrCurrency}}</span>
+          </label>
+          <label class="quantity">
+            <ion-icon name="briefcase-outline" class="icon"></ion-icon>
+            <span class="text">{{holding.qty}}</span>
+          </label>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <div class="empty-record" *ngIf="holdingList.length===0">
+    <h4>No Holding Available.</h4>
+    <p>Please add new holding</p>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddEdit()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

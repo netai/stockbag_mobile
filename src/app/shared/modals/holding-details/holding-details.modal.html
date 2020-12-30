@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Holding Details
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="content-wrapper" *ngIf="holding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1 class="script-name">{{holding.symbol}}</h1>
+          <div>
+            <span class="tag-label exchange-tag">{{holding.exchange}}</span>
+            <span class="tag-label sell-tag" *ngIf="holding.holding_type==='sell'">SELL</span>
+            <span class="tag-label buy-tag" *ngIf="holding.holding_type==='buy'">BUY</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="detail-row">
+        <ion-col class="detail-col">
+          <div class="detail-label">Price:</div>
+          <div class="detail-value"><span class="icon currency-inr"></span>{{holding.avg_price | inrCurrency}}</div>
+        </ion-col>
+        <ion-col class="detail-col">
+          <div class="detail-label">Quantity:</div>
+          <div class="detail-value">{{holding.qty}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="detail-row">
+        <ion-col class="detail-col">
+          <div class="detail-label">Target Price:</div>
+          <div class="detail-value"><span class="icon currency-inr"></span>{{holding.target_price | inrCurrency}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="detail-row">
+        <ion-col class="detail-col">
+          <div class="detail-label">Period:</div>
+          <div class="detail-value">{{period_detail[holding.period]}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="detail-row">
+        <ion-col class="detail-col">
+          <div class="detail-label">Estimated Exit Date:</div>
+          <div class="detail-value">{{holding.est_exit_date}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="detail-row">
+        <ion-col class="detail-col">
+          <div class="detail-label">Holding Date:</div>
+          <div class="detail-value">{{holding.holding_on}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h2 class="detail-title">Notes</h2>
+          <div class="notes-row" *ngFor="let note of notes">
+            <div>
+              <div class="notes-date">{{note.note_on}}</div>
+              <div class="notes-delete-icon">
+                <ion-icon name="trash-outline" (click)="deleteNote(note.id)"></ion-icon>
+              </div>
+            </div>
+            <div class="notes-text" [innerHTML]="note.text"></div>
+          </div>
+          <div class="empty-note" *ngIf="notes.length==0">
+            <p>No Notes Available</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="note-input-section">
+        <ion-col class="form-group">
+          <ion-label class="input-label">Notes</ion-label>
+          <ion-textarea rows="2" class="form-input" [(ngModel)]="newNote"></ion-textarea>
+          <button class="btn btn-blue btn-sm" (click)="sendNote()">
+            <ion-icon name="send-outline"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text-center action-btn">
+          <button class="btn btn-red btn-md" (click)="delete()">DELETE</button>
+          <button class="btn btn-blue btn-md" (click)="modify()">MODIFY</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="text-center">
+    <button class="btn btn-buy btn-lg" (click)="addExit('add')">ADD</button>
+    <button class="btn btn-sell btn-lg" (click)="addExit('exit')">EXIT</button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,6 @@
+.custom-header-border {
+    border: 1px solid #ccc;
+    &::after {
+        background: none;
+    }
+}

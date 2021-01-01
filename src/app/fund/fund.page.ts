@@ -33,11 +33,11 @@ export class FundPage {
     this._ss.getData(AppConfig.API_SERVICE.FUND)
       .subscribe(
         fundData => {
+          this._ms.messageHandler(fundData);
+          this._loader.loadingDismiss();
           if (fundData.status === 'success') {
             this.fund = fundData.data.fund as Fund;
           }
-          this._ms.messageHandler(fundData);
-          this._loader.loadingDismiss();
         },
         error => {
           this._loader.loadingDismiss();

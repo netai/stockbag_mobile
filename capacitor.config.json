@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "stockbag",
+  "appName": "Stockbag",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

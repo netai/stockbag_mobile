@@ -1,4 +1,4 @@
-# stockbag mobile app
+# Stockbag mobile app
 
 
 https://stockbag.herokuapp.com

@@ -66,11 +66,11 @@ export class HoldingPage {
     this._ss.getData(AppConfig.API_SERVICE.HOLDING_LIST)
       .subscribe(
         holdingData => {
+          this._ms.messageHandler(holdingData);
+          this._loader.loadingDismiss();
           if (holdingData.status === 'success') {
             this.holdingList = holdingData.data.holding_list as Holding[];
           }
-          this._ms.messageHandler(holdingData);
-          this._loader.loadingDismiss();
         },
         error => {
           this.holdingList = [];

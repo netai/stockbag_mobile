@@ -101,11 +101,11 @@ export class HoldingDetailsModal implements OnInit {
             this._ss.deleteData(AppConfig.API_SERVICE.HOLDING_NOTE.replace('<holding_id>', this.id) + '/' + id)
               .subscribe(
                 resp => {
+                  this._ms.messageHandler(resp);
+                  this._loader.loadingDismiss();
                   if (resp.status === 'success') {
                     this._loadNotes(this.id);
                   }
-                  this._ms.messageHandler(resp);
-                  this._loader.loadingDismiss();
                 },
                 error => {
                   this._loader.loadingDismiss();

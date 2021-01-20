@@ -17,7 +17,7 @@ export class SettingsPage implements OnInit {
   isSubmitted: boolean = false;
   userData: any;
   trade_period: any;
-
+  get formControls() { return this.settingsFrm.controls; }
 
   constructor(
     private _location: Location,
@@ -27,7 +27,7 @@ export class SettingsPage implements OnInit {
     private _ms: MessageService,
   ) {
     this.userData = _as.getUserData().user;
-    if(localStorage.getItem('TRADE_PERIOD')) {
+    if (localStorage.getItem('TRADE_PERIOD')) {
       this.trade_period = JSON.parse(localStorage.getItem('TRADE_PERIOD'));
     } else {
       this.trade_period = AppConfig.TRADE_CONFIG.PERIOd;

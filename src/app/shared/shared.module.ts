@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
+import { HeaderMenuComponent } from "./components/header-menu/header-menu.component";
 import { FundAddWithdrawModal } from "./modals/fund-add-withdraw/fund-add-withdraw.modal";
 import { HoldingAddEditModal } from "./modals/holding-add-edit/holding-add-edit.modal";
 import { HoldingAddExitModal } from "./modals/holding-add-exit/holding-add-exit.modal";
@@ -20,7 +21,8 @@ import { InrCurrencyPipe } from "./pipes/inr-currency.pipe";
     HoldingAddEditModal,
     HoldingDetailsModal,
     HoldingAddExitModal,
-    FundAddWithdrawModal
+    FundAddWithdrawModal,
+    HeaderMenuComponent
   ],
   entryComponents: [
     HoldingAddEditModal,

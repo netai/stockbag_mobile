@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-sharp" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="save()">
+        Save
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="settingsFrm" name="settingsFrm">
+    <div class="user-info">
+      <h1>{{userData.username | uppercase}}</h1>
+      <label>{{userData.name}}</label>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="form-group form-group-inline">
+          <ion-label class="input-label">Short Return %</ion-label>
+          <ion-input type="text" class="form-input" formControlName="short_return"
+            [ngClass]="{ 'invalid-field': isSubmitted && formControls.short_return.errors }"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="form-group form-group-inline">
+          <ion-label class="input-label">Middle Return %</ion-label>
+          <ion-input type="text" class="form-input" formControlName="middle_return"
+            [ngClass]="{ 'invalid-field': isSubmitted && formControls.middle_return.errors }"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="form-group form-group-inline">
+          <ion-label class="input-label">Long Return %</ion-label>
+          <ion-input type="text" class="form-input" formControlName="long_return"
+            [ngClass]="{ 'invalid-field': isSubmitted && formControls.long_return.errors }"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

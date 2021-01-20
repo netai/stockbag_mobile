@@ -18,7 +18,7 @@ export class HoldingAddEditModal implements OnInit {
   @Input() holding: Holding;
   addEditFrm: FormGroup;
   isSubmitted: boolean = false;
-  period_days: any;
+  trade_period: any;
 
   get formControls() { return this.addEditFrm.controls; }
 
@@ -29,7 +29,11 @@ export class HoldingAddEditModal implements OnInit {
     private _ss: ServerService,
     private _ms: MessageService
   ) {
-    this.period_days = AppConfig.TRADE_PERIOD;
+    if(localStorage.getItem('TRADE_PERIOD')) {
+      this.trade_period = JSON.parse(localStorage.getItem('TRADE_PERIOD'));
+    } else {
+      this.trade_period = AppConfig.TRADE_CONFIG.PERIOd;
+    }
   }
 
   ngOnInit() {
@@ -97,7 +101,7 @@ export class HoldingAddEditModal implements OnInit {
 
   periodChanged(): void {
     this.addEditFrm.patchValue({
-      'est_exit_date': UtilService.getAddedDaysDate((new Date).toString(), this.period_days[this.addEditFrm.get('period').value])
+      'est_exit_date': UtilService.getAddedDaysDate((new Date).toString(), this.trade_period[this.addEditFrm.get('period').value].days)
     });
     this.setTargetPrice();
   }
@@ -105,11 +109,11 @@ export class HoldingAddEditModal implements OnInit {
   setTargetPrice(): void {
     let avg_price = parseFloat(this.addEditFrm.get('avg_price').value);
     let qty = parseInt(this.addEditFrm.get('qty').value);
-    let est_exit_date = this.addEditFrm.get('est_exit_date').value;
+    let target_per = this.trade_period[this.addEditFrm.get('period').value].return;
     if (!isNaN(avg_price)) {
-      let target_price = ((((avg_price / 100) * AppConfig.TRADE_CONFIG.TARGET_DAY_PERCENTAGE) * UtilService.dateDifference((new Date()).toString(), est_exit_date, 'days')) + avg_price).toFixed(2);
+      let target_price = (((avg_price / 100) * target_per) + avg_price).toFixed(2);
       if (!isNaN(qty)) {
-        target_price = (parseFloat(target_price) + (AppConfig.TRADE_CONFIG.DP_CHARGES / qty)).toFixed(2);
+        target_price = (parseFloat(target_price) + (AppConfig.TRADE_CONFIG.EXTRA_CHARGES / qty)).toFixed(2);
       }
       this.addEditFrm.patchValue({
         'target_price': target_price

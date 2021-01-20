@@ -7,20 +7,19 @@ export class AppConfig {
     public static API_SERVICE = {
         LOGIN: 'api/login',
         FUND: 'api/fund',
+        FUND_ADD_WITHDRAW: 'api/fund/add_withdraw',
         HOLDING_LIST: 'api/holding_list',
         HOLDING: 'api/holding',
         HOLDING_ADD_EXIT: 'api/holding/add_exit',
-        HOLDING_NOTE: 'api/holding/<holding_id>/note'
+        HOLDING_NOTE: 'api/holding/<holding_id>/note',
     }
 
     public static TRADE_CONFIG = {
-        DP_CHARGES: 20,
-        TARGET_DAY_PERCENTAGE: .17
-    }
-
-    public static TRADE_PERIOD = {
-        'S': 7,
-        'M': 30,
-        'L': 365
+        PERIOd: {
+            'S': { return: 1, days: 7 },
+            'M': { return: 4, days: 30 },
+            'L': { return: 40, days: 365 },
+        },
+        EXTRA_CHARGES: 20
     }
 }

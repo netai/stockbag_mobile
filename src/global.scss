@@ -93,6 +93,12 @@
     .form-check-label {
         font-size: 20px;
     }
+    &-inline {
+        .input-label {
+            position: relative;
+            top: 0;
+        }
+    }
 }
 .text-center {
     text-align: center;
@@ -103,6 +109,7 @@
     background: #fff;
     color: #444;
     border: 1px solid #444;
+    outline: none;
     &:hover {
         opacity: .8;
     }
@@ -202,6 +209,12 @@
         top: 50%;
         position: absolute;
     }
+    &.drawer-sm {
+        .modal-wrapper {
+            height: 35%;
+            top: 65%;
+        }
+    }
 }
 
 .toast {
@@ -212,5 +225,11 @@
     }
     &-success {
         color: #28a745;
+    }
+}
+
+.header-menu {
+    .popover-content {
+        max-width: 10rem;
     }
 }

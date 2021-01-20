@@ -12,18 +12,26 @@
       <label class="text">Available Fund</label>
       <label class="price"><span class="icon currency-inr"></span>{{fund.total_amount | inrCurrency}}</label>
     </div>
+    <ion-row class="text-center action-btn">
+      <ion-col>
+        <button class="btn btn-blue btn-md" (click)="addWithdraw('add')">ADD</button>
+        <button class="btn btn-red btn-md" (click)="addWithdraw('withdraw')">WITHDRAW</button>
+      </ion-col>
+    </ion-row>
     <ion-list lines="full" class="fund-detail">
       <ion-item>
         <ion-label>
           <span>Invested Amount</span>
-          <span class="ion-text-right"><span class="icon currency-inr"></span>{{fund.invested_amount | inrCurrency}}</span>
+          <span class="ion-text-right"><span class="icon currency-inr"></span>{{fund.invested_amount |
+            inrCurrency}}</span>
         </ion-label>
       </ion-item>
-  
+
       <ion-item>
         <ion-label>
           <span>Unreleased Amount</span>
-          <span class="ion-text-right"><span class="icon currency-inr"></span>{{fund.unreleased_amount | inrCurrency}}</span>
+          <span class="ion-text-right"><span class="icon currency-inr"></span>{{fund.unreleased_amount |
+            inrCurrency}}</span>
         </ion-label>
       </ion-item>
       <ion-item>
@@ -40,7 +48,7 @@
           <span>Profit/Loss %</span>
           <span class="ion-text-right">
             <span class="icon"></span>
-            {{(((fund.total_amount+fund.unreleased_amount)-fund.invested_amount)*100/fund.invested_amount)}}%
+            {{profit_per}}%
           </span>
         </ion-label>
       </ion-item>

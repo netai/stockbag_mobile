@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { HoldingAddEditModal } from '../shared/modals/holding-add-edit/holding-add-edit.modal';
 import { HoldingDetailsModal } from '../shared/modals/holding-details/holding-details.modal';
 import { Holding } from '../models/holding.model';
@@ -7,6 +7,7 @@ import { LoaderService } from '../core/services/loader.service';
 import { AppConfig } from '../app.config';
 import { ServerService } from '../core/services/server.service';
 import { MessageService } from '../core/services/message.service';
+import { HeaderMenuComponent } from '../shared/components/header-menu/header-menu.component';
 
 @Component({
   selector: 'app-holding',
@@ -19,6 +20,7 @@ export class HoldingPage {
 
   constructor(
     private _modalCtrl: ModalController,
+    private _popoverCtrl: PopoverController,
     private _loader: LoaderService,
     private _ss: ServerService,
     private _ms: MessageService
@@ -26,7 +28,7 @@ export class HoldingPage {
 
   ngOnInit() { }
 
-  ionViewWillEnter() {}
+  ionViewWillEnter() { }
 
   ionViewDidEnter() {
     this._loadHolding();
@@ -77,6 +79,16 @@ export class HoldingPage {
           this._loader.loadingDismiss();
         }
       );
+  }
+
+  async showHeaderMenu(ev: any) {
+    const popover = await this._popoverCtrl.create({
+      component: HeaderMenuComponent,
+      cssClass: 'header-menu',
+      event: ev,
+      showBackdrop: false
+    });
+    return await popover.present();
   }
 
   ionViewWillLeave() { }

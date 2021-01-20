@@ -1,0 +1,28 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span [hidden]="action==='withdraw'">Add</span><span [hidden]="action==='add'">Withdraw</span> Fund
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form name="addWithdrawFrm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" class="form-group">
+            <ion-label class="input-label">Amount</ion-label>
+            <ion-input type="number" class="form-input" name="amount" [(ngModel)]="amount"
+              [ngClass]="{ 'invalid-field': isSubmitted && amount==='' }" pattern="^([1-9]\d*|0)(\.\d+)?$"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="text-center">
+    <button class="btn btn-blue btn-xl" (click)="save('buy')" [hidden]="(action==='withdraw')">ADD</button>
+    <button class="btn btn-red btn-xl" (click)="save('withdraw')" [hidden]="(action==='add')">WITHDRAW</button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Holding
-    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHeaderMenu($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Holding</ion-title>
   </ion-toolbar>
 </ion-header>
 

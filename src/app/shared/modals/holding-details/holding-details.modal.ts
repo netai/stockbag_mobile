@@ -171,6 +171,7 @@ export class HoldingDetailsModal implements OnInit {
           this.close()
         }
         else if (data['data'] && data['data'].reload) {
+          this.reloadHoldingList = true;
           this._loadHolding()
         }
       }, 10);

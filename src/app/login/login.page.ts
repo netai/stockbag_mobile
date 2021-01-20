@@ -26,12 +26,16 @@ export class LoginPage implements OnInit {
     private _ms: MessageService,
     private _as: AuthService,
     private _router: Router,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginFrm = this._fb.group({
-      username: ['', Validators.required]
+      username: [(localStorage.getItem('USERNAME') || ''), Validators.required]
     });
+  }
+
+  ionViewDidEnter() {
+    document.addEventListener("backbutton", function (e) { }, false);
   }
 
   public login(): void {
@@ -42,12 +46,12 @@ export class LoginPage implements OnInit {
       this._ss.postData(AppConfig.API_SERVICE.LOGIN, formData)
         .subscribe(
           userData => {
+            this._ms.messageHandler(userData);
+            this._loader.loadingDismiss();
             if (userData.status === 'success') {
               this._as.authenticate(userData.data);
               this._router.navigateByUrl('/');
             }
-            this._ms.messageHandler(userData);
-            this._loader.loadingDismiss();
           },
           error => {
             this._loader.loadingDismiss();

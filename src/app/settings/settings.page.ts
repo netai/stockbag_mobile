@@ -36,9 +36,9 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.settingsFrm = this._fb.group({
-      short_return: [this.trade_period['S'].return, Validators.required],
-      middle_return: [this.trade_period['M'].return, Validators.required],
-      long_return: [this.trade_period['L'].return, Validators.required]
+      short_return: [this.trade_period['S'].return, [Validators.required, Validators.min(.1)]],
+      middle_return: [this.trade_period['M'].return, [Validators.required, Validators.min(.1)]],
+      long_return: [this.trade_period['L'].return, [Validators.required, Validators.min(.1)]]
     });
   }
 

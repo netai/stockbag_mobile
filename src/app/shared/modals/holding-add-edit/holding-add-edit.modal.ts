@@ -40,10 +40,10 @@ export class HoldingAddEditModal implements OnInit {
     this.addEditFrm = this._fb.group({
       exchange: [(this.holding ? this.holding.exchange : 'NSE'), Validators.required],
       symbol: [(this.holding ? this.holding.symbol : ''), Validators.required],
-      avg_price: [(this.holding ? this.holding.avg_price : ''), Validators.required],
-      target_price: [(this.holding ? this.holding.target_price : ''), Validators.required],
-      profit_percentage: ['', Validators.required],
-      qty: [(this.holding ? this.holding.qty : ''), Validators.required],
+      avg_price: [(this.holding ? this.holding.avg_price : ''), [Validators.required, Validators.min(.1)]],
+      target_price: [(this.holding ? this.holding.target_price : ''), [Validators.required, Validators.min(.1)]],
+      profit_percentage: ['', [Validators.required, Validators.min(.1)]],
+      qty: [(this.holding ? this.holding.qty : ''), [Validators.required, Validators.min(1)]],
       period: [(this.holding ? this.holding.period : 'S'), Validators.required],
       est_exit_date: [(this.holding ? this.holding.est_exit_date : UtilService.getAddedDaysDate((new Date).toString(), 7)), Validators.required],
       note: ['']

@@ -27,13 +27,13 @@ export class FundAddWithdrawModal implements OnInit {
 
   public save(type: string): void {
     this.isSubmitted = true;
-    if (this.amount != '') {
+    if (this.amount !== '') {
       this._loader.loadingPresent();
-      let formData = {
-        amount: this.amount,
-        req_type: this.action
-      };
       if (parseFloat(this.amount) > 0) {
+        let formData = {
+          amount: this.amount,
+          req_type: this.action
+        };
         this._ss.putData(AppConfig.API_SERVICE.FUND_ADD_WITHDRAW, formData)
           .subscribe(
             resp => {
@@ -48,7 +48,11 @@ export class FundAddWithdrawModal implements OnInit {
             }
           );
       } else {
-        this.close();
+        setTimeout(() => {
+          this._loader.loadingDismiss();
+          this._ms.messageHandler({ status: 'failure', message: 'Please provide valid amount.' });
+          this.close();
+        }, 500);
       }
     }
   }

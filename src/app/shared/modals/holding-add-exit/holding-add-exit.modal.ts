@@ -31,8 +31,8 @@ export class HoldingAddExitModal implements OnInit {
 
   ngOnInit() {
     this.addExitFrm = this._fb.group({
-      avg_price: ['', Validators.required],
-      qty: ['', Validators.required],
+      avg_price: ['', [Validators.required, Validators.min(.1)]],
+      qty: ['', [Validators.required, Validators.min(1)]],
       note: ['']
     });
   }
